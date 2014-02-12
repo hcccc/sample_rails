@@ -3,7 +3,7 @@ require 'spec_helper'
 describe User do
 
   before do
-    @user = User.new(name: "Example User", email: "user@example.com")
+    @user = User.new(name: "Example User", email: "user@example.com", password: "foobar", password_confirmation: "foobar")
   end
 
   subject { @user }
@@ -31,7 +31,7 @@ describe User do
       end
     end
   end
-
+  #
   describe "when email format is valid" do
     it "should be valid" do
       addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
@@ -41,7 +41,7 @@ describe User do
       end
     end
   end
-
+  #
   describe "when email address is already taken" do
     before do
       user_with_same_email = @user.dup
@@ -51,7 +51,7 @@ describe User do
 
     it { should_not be_valid }
   end
-
+  #
   describe "when password is not present" do
     before do
       @user = User.new(name: "Example User", email: "user@example.com",
@@ -59,17 +59,17 @@ describe User do
     end
     it { should_not be_valid }
   end
-
+  #
   describe "when password doesn't match confirmation" do
     before { @user.password_confirmation = "mismatch" }
     it { should_not be_valid }
   end
-
+  #
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
   end
-
+  #
   describe "return value of authenticate method" do
     before { @user.save }
     let(:found_user) { User.find_by(email: @user.email) }
