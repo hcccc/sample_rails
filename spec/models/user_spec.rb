@@ -18,6 +18,11 @@ describe User do
 
   it { should be_valid }
 
+  describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+  end
+
   describe "when name is too long" do
     before { @user.name = "a" * 51 }
     it { should_not be_valid }
