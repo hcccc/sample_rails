@@ -16,5 +16,6 @@
 /tmp
 
 .project
-.idea
+.idea/
+*.iml
 bundler_stubs

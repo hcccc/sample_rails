@@ -18,7 +18,7 @@
         <p class="alert alert-error"><%= alert %></p>
     <% end %>
     <% if user_signed_in? %>
-        <p> Logged in as <%= current_user.name %></p>
+        <p> Logged in as <%= current_user.username %></p>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
